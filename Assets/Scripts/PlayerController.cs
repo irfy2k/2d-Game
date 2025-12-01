@@ -90,6 +90,25 @@ public class PlayerController : MonoBehaviour, IDamageable
     public void EnableHitbox() { if (swordCollider != null) swordCollider.enabled = true; }
     public void DisableHitbox() { if (swordCollider != null) swordCollider.enabled = false; }
 
+    // --- AUDIO ANIMATION EVENTS ---
+    // These can be called from ATTACK / ATTACK2 / ATTACK3 animations.
+    public void PlayAttackSwingSfx()
+    {
+        if (HitEffectsManager.Instance != null)
+        {
+            HitEffectsManager.Instance.PlayPlayerAttackSwing();
+        }
+    }
+
+    // Can be called from the PARRY animation.
+    public void PlayParrySfx()
+    {
+        if (HitEffectsManager.Instance != null)
+        {
+            HitEffectsManager.Instance.PlayParrySfx();
+        }
+    }
+
     private void Awake()
     {
         SM = new StateMachine();
@@ -234,9 +253,19 @@ public class PlayerController : MonoBehaviour, IDamageable
 
             if (attacker != null)
             {
-                attacker.OnParryStun(); // Tell the enemy to get stunned!
+                // Successful parry: stun the attacker and play parry FX / SFX.
+                attacker.OnParryStun();
+
+                if (HitEffectsManager.Instance != null)
+                {
+                    // Center the effect near the attacker that got parried.
+                    HitEffectsManager.Instance.PlayParryEffect(attacker.transform.position);
+                }
+
+                return;
             }
-            // If attacker is null, we parried environment damage or projectile; visual effect happens anyway.
+
+            // If attacker is null, we parried environment damage or projectile; no parry FX.
             return;
         }
 
@@ -256,6 +285,12 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         if (isDead) return;
         isDead = true;
+
+        // Stronger camera / screen FX when the player dies.
+        if (HitEffectsManager.Instance != null)
+        {
+            HitEffectsManager.Instance.PlayPlayerDeathEffect(transform.position);
+        }
 
         // Stop all movement and disable sword hitbox
         rb.linearVelocity = Vector2.zero;

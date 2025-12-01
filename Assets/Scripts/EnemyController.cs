@@ -127,6 +127,25 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         anim.Play(stateHash);
     }
+
+    // --- AUDIO ANIMATION EVENTS ---
+    // Can be called from the Goblin ATTACK animation.
+    public void PlayAttackSwingSfx()
+    {
+        if (HitEffectsManager.Instance != null)
+        {
+            HitEffectsManager.Instance.PlayEnemyAttackSwing();
+        }
+    }
+
+    // Can be called from the Goblin DEATH animation.
+    public void PlayDeathSfx()
+    {
+        if (HitEffectsManager.Instance != null)
+        {
+            HitEffectsManager.Instance.PlayEnemyDeath();
+        }
+    }
     // --------------------------------------------------------
 
     // --- IDamageable Interface Implementation ---

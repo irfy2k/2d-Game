@@ -36,6 +36,13 @@ public class DamageDealer : MonoBehaviour
                 {
                     // If the target is not the Player (it must be the Goblin/Enemy), call the simple version.
                     target.TakeDamage(damageAmount);
+
+                    // Trigger a small hit effect for successful strikes on enemies
+                    EnemyController enemy = target as EnemyController;
+                    if (enemy != null && HitEffectsManager.Instance != null)
+                    {
+                        HitEffectsManager.Instance.PlayHitEffect(enemy.transform.position, hitPlayer: false, isParry: false);
+                    }
                 }
             }
         }
