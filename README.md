@@ -13,7 +13,7 @@ Featuring **tight controls**, **instant feedback mechanics**, and **simple but r
 ---
 
 ## 📸 **Youtube video && Screenshots**
-[Watch the Video on YouTube](https://youtu.be/8jH3w3ZyjjU?si=5sK4n73vFr-pwPlk)
+[![Click to Watch Video](https://img.youtube.com/vi/8jH3w3ZyjjU/maxresdefault.jpg)](https://youtu.be/8jH3w3ZyjjU?si=5sK4n73vFr-pwPlk)
 <img width="865" height="514" alt="Screenshot from 2025-12-01 13-59-10" src="https://github.com/user-attachments/assets/20fd0c76-a983-45d4-a356-f3099371dd3a" />
 <img width="1430" height="779" alt="Screenshot from 2025-12-01 13-58-49" src="https://github.com/user-attachments/assets/6e0d749c-7f89-4e16-b2c0-cea48eb59fff" />
 
